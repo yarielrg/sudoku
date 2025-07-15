@@ -1,0 +1,1 @@
+export const SUDOKU_API_URL = 'https://sugoku.onrender.com';

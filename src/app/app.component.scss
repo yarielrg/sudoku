@@ -1,0 +1,182 @@
+$border-normal: 0.5px solid #444;
+$border-thick: 3px solid #444;
+
+.game-container {
+    width: 100vw;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
+    margin: 1rem auto;
+    box-sizing: border-box;
+    display: block;
+    padding: 1rem;
+}
+
+.title h1 {
+    line-height: 1.2857em;
+    font-weight: 700;
+    padding: 0;
+    margin-top: 0;
+    min-height: 1rem;
+    font-size: 2rem;
+}
+
+.sudoku {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    height: 11.111%;
+}
+
+.cell-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: $border-normal;
+    background: #fff;
+}
+
+.cell-input {
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: normal;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+
+    &:focus-visible {
+        outline: none;
+        border: none;
+    }
+}
+
+.row:nth-child(3n + 1) {
+    border-top: $border-thick;
+}
+
+.row:nth-child(3n) {
+    .cell-container {
+        border-bottom: none;
+    }
+}
+
+.row:last-child {
+    border-bottom: $border-thick;
+
+    .cell-container {
+        border-bottom: none;
+    }
+}
+
+.cell-container:nth-child(3n) {
+    border-right: none;
+}
+
+.cell-container:nth-child(3n + 1) {
+    border-left: $border-thick;
+}
+
+.cell-container:last-child {
+    border-right: $border-thick;
+}
+
+.actions {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-board {
+    display: inline-block;
+    min-width: 100px;
+    line-height: 1.2857em;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0;
+}
+
+.generate-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.generate-random {
+    display: flex;
+}
+
+.options {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.btn-difficulty {
+    min-width: 100px;
+
+    &.selected {
+        border-bottom: $border-thick;
+    }
+}
+
+.btn-random {
+    flex-grow: 1;
+    border: 0.5px solid #44444430;
+}
+
+.controllers {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.start-block {
+    display: flex;
+}
+
+.text-status {
+    display: flex;
+    min-width: 72px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    font-weight: bold;
+    border-top: 0.5px solid #44444430;
+    border-right: 0.5px solid #44444430;
+    border-bottom: 0.5px solid #44444430;
+}
+
+.btn-validate,
+.btn-solve {
+    border: 0.5px solid #44444430;
+    min-width: 150px;
+}
+
+input.is-invalid {
+    color: red;
+}
+
+@media (min-width: 600px) {
+    .game-container {
+        max-width: 500px;
+        padding: 2rem;
+    }
+
+    .cell-input {
+        font-size: 3rem;
+    }
+}

@@ -1,0 +1,48 @@
+<div class="game-container">
+  <div class="title">
+    <h1>Sudoku</h1>
+  </div>
+  <div class="sudoku">
+    @for (row of board().board; track $index; let rowIndex = $index) {
+    <div class="row">
+      @for (cell of row; track $index; let colIndex = $index) {
+      <div class="cell-container">
+        <input class="cell-input" name="cell-input" [value]="cell || ''" onlyNumbers
+          (valueChange)="updateCell(rowIndex, colIndex, $event)" maxlength="1"
+          [disabled]="originalBoard && originalBoard.board[rowIndex][colIndex] !== 0 || !valid()" />
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="actions">
+    <div class="generate">
+      <div class="generate-options">
+        <span class="new-board">New Game: </span>
+        <div class="options">
+          <button class="btn btn-difficulty" [ngClass]="{ 'selected': grade() === difficulty.EASY}"
+            (click)="getBoard(difficulty.EASY)">Easy</button>
+          <button class="btn btn-difficulty" [ngClass]="{ 'selected': grade() === difficulty.MEDIUM}"
+            (click)="getBoard(difficulty.MEDIUM)">Medium</button>
+          <button class="btn btn-difficulty" [ngClass]="{ 'selected': grade() === difficulty.HARD}"
+            (click)="getBoard(difficulty.HARD)">Hard</button>
+        </div>
+      </div>
+      <div class="generate-random">
+        <span class="new-board"></span>
+        <button class="btn btn-random" (click)="getBoard(difficulty.RANDOM)">I Feel Lucky</button>
+      </div>
+    </div>
+
+    <div class="controllers">
+      <div class="start-block">
+        <button class="btn btn-validate" (click)="validate()">Validate</button>
+        <span class="text-status">{{ status() }}</span>
+      </div>
+      <div class="end-block">
+        <button class="btn btn-solve" (click)="solve()">Solve</button>
+      </div>
+    </div>
+  </div>
+</div>
