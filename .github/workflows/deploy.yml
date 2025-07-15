@@ -1,0 +1,46 @@
+name: Deploy Sudoku to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli@19
+      
+    - name: Build Angular app
+      run: ng build --configuration production --base-href="sudoku"
+      
+    - name: List build output (debugging)
+      run: |
+        echo "Contents of dist/:"
+        ls -la dist/
+        echo "Contents of dist/sudoku/:"
+        ls -la dist/sudoku/ || true
+        echo "Contents of dist/sudoku/browser/:"
+        ls -la dist/sudoku/browser/ || true
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist/sudoku/browser
+        force_orphan: true
+        enable_jekyll: false

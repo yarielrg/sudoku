@@ -38,6 +38,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "sudoku",
+              "outputPath": "dist/sudoku",
               "budgets": [
                 {
                   "type": "initial",
