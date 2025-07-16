@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DialogRef } from '@angular/cdk/dialog';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-solve-dialog',
@@ -8,6 +8,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 export class SolveDialogComponent {
 
+  data: { mainText: string, subText?: string } = inject(DIALOG_DATA);
   private readonly dialogRef = inject(DialogRef);
 
   cancel(): void {

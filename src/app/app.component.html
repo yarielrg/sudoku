@@ -1,6 +1,7 @@
 <div class="game-container">
   <div class="title">
     <h1>Sudoku</h1>
+     <button class="btn btn-reset" (click)="reset()">Reset</button>
   </div>
   <div class="sudoku">
     @for (row of board().board; track $index; let rowIndex = $index) {

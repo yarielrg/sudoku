@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SolveDialogComponent } from './solve-dialog.component';
-import { DialogRef } from '@angular/cdk/dialog';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 
 describe('SolveDialogComponent', () => {
   let component: SolveDialogComponent;
@@ -13,7 +13,7 @@ describe('SolveDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ SolveDialogComponent ],
       providers: [
-        { provide: DialogRef, useValue: dialogRefSpy }
+        { provide: DialogRef, useValue: dialogRefSpy }, { provide: DIALOG_DATA, useValue: {} }
       ]
     }).compileComponents();
 

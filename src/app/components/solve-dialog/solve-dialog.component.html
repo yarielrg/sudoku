@@ -1,7 +1,7 @@
 <h2 class="dialog-title">Confirmation</h2>
 <div class="dialog-content">
-  Are you sure you want to solve the Sudoku puzzle? This action will overwrite your current board.
-  <p class="dialog-note">Note: The current board will be replaced with the solution</p>
+  {{ data.mainText }}
+  <p class="dialog-note">{{ data.subText ?? '' }}</p>
 </div>
 <div class="dialog-actions">
   <button class="btn btn-cancel" (click)="cancel()">Cancel</button>
