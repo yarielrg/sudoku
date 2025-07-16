@@ -96,8 +96,9 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   updateCell(row: number, col: number, input: { value: string, validation: OnlyNumbersDirective }): void {
-    const newBoard = this.board().board;
-    newBoard[row][col] = parseInt(input.value, 10) || 0;
+    const newBoard = this.board().board.map((r, i) =>
+      i === row ? r.map((c, j) => (j === col ? parseInt(input.value, 10) || 0 : c)) : r
+    );
     this.board.set({ board: newBoard });
     const valid = isValidSudoku(this.board());
     input.validation.invalid = !valid;
